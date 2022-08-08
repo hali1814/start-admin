@@ -1,5 +1,5 @@
 import express from 'express'
-import morgan from 'morgan'
+// import morgan from 'morgan'
 import { fileURLToPath } from 'url'
 import path from 'path'
 import { engine as handlebars } from 'express-handlebars'
@@ -13,7 +13,7 @@ const app = express();
 
 
 //morgan
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/haohoa/details-product.css">
+    <link rel="stylesheet" href="/vendors/feather/feather.css">
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/vendors/typicons/typicons.css">
+    <link rel="stylesheet" href="/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="	https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-lg-8 border p-3 main-section bg-white">
+            <div class="row hedding m-0 pl-3 pt-0 pb-3">
+                Product details
+            </div>
+            <div class="row m-0">
+                <div class="col-lg-4 left-side-product-box pb-3">
+                    {{!-- ===== img ===== --}}
+                    <img src="{{product/image}}" class="border p-3">
+                    <span class="sub-img">
+                        <img src="{{product/image}}" class="border p-2">
+                        <img src="{{product/image}}" class="border p-2">
+                        <img src="{{product/image}}" class="border p-2">
+                    </span>
+                </div>
+                <div class="col-lg-8">
+                    <div class="right-side-pro-detail border p-3 m-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span>Name Product</span>
+                                <p class="m-0 p-0">{{product/name_product}}</p>
+                            </div>
+
+                            {{!-- ====== brand --}}
+                            <div class="col-lg-12 pt-2">
+                                <h5>Brand</h5>
+                                <p style="font-size: 20px;">{{product/brand}}</p>
+
+                            </div>
+                            {{!-- ====== Type --}}
+                            <div class="col-lg-12 pt-2">
+                                <h5>Type</h5>
+                                <p style="font-size: 20px;">{{product/type}}</p>
+
+                            </div>
+                            {{!-- ====== price --}}
+                            <div class="col-lg-12 pt-2">
+                                <h5>Price</h5>
+                                <p class="m-0 p-0 price-pro">${{product/price}}</p>
+                                <hr class="m-0 pt-2 mt-2">
+                            </div>
+
+
+
+                            <div class="col-lg-12 mt-3">
+                                <div class="row">
+                                    <div class="col-lg-6 pb-2">
+                                        <button type="button" onclick="toUpdate('{{product/_id}}')" class="btn btn-info w-100">Update</button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button href="#" onclick="haohoa('{{product/_id}}')" st
+                                            class="btn btn-danger w-100">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center pt-3">
+                    <h4>More Product</h4>
+                </div>
+            </div>
+            <div class="row mt-3 p-0 text-center pro-box-section">
+
+                {{#each products}}
+                <div class="col-lg-3 pb-2">
+                    <div class="pro-box border p-0 m-0">
+                        <img src="{{this.image}}">
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const deleteMethod = {
+            method: 'DELETE', // Method itself
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8' // Indicates the content 
+            },
+            // No need to have body, because we don't send nothing to the server.
+        }
+
+        function toUpdate(id) {
+            window.location.href = '/product/update/' + id;
+        }
+
+
+        function haohoa(id) {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this product!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        fetch(`/product/delete/${id}`, deleteMethod)
+                            .then(data => {
+                                if (data) {
+                                    swal("Poof! Your product has been deleted!", {
+                                        icon: "success",
+                                    }).then(() => {
+                                        window.location.href = '/product';
+                                    });
+                                } else {
+                                    swal("error system! pleas try again!", {
+                                        icon: "error",
+                                    });
+                                }
+                            })
+                    } else {
+                        swal("Your product is safe!");
+                    }
+                });
+        }
+    </script>
+
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+</html>

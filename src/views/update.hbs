@@ -1,0 +1,112 @@
+<div class="content-wrapper">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Update Product</h4>
+        <form class="form-sample" action="/product/update/{{product/_id}}" enctype="multipart/form-data" method="post">
+          <p class="card-description">
+            HaoHoa
+          </p>
+
+
+          <div class="row">
+
+            <div class="w-100 p-3">
+              <div class="w-25 p-3" style="background-color: #eee;">
+                <img src="{{product/image}}" id="haohao" class="img-fluid " alt="..."
+                  onclick="document.getElementById('selectedFile').click();">
+                <input id="selectedFile" onchange="onFileSelected(event)" name="image" type="file"
+                  class="custom-file-input" style="display: none;">
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 ">Name Product</label>
+                <div class="col-sm-9">
+                  <input type="text" value="{{product/name_product}}" name="name_product" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 ">Price</label>
+                <div class="col-sm-9">
+                  <input type="number" value="{{product/price}}" name="price" class="form-control" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 ">Brand</label>
+                <div class="col-sm-9">
+                  <input type="text" value="{{product/brand}}" name="brand" class="form-control" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 ">Category</label>
+                <div class="col-sm-9">
+                  <select class="form-select" name="category" aria-label="Default select example">
+                    {{#each categories}}
+                    {{#if this.isCheck}}
+                     <option value={{this.type}} selected>{{this.type}}</option>
+                     {{else}}
+                      <option value={{this.type}}>{{this.type}}</option>
+                    {{/if}}
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div class="col-sm-9">
+                  <button type="submit" class="btn btn-success" style="margin-left: 150px;">Update</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group row">
+                <div class="col-sm-9">
+
+                  <button type="button" style="margin-left: 150px;" class="btn btn-danger">Cancel</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    function myFunction() {
+
+    }
+
+    function onFileSelected(event) {
+      var selectedFile = event.target.files[0];
+      var reader = new FileReader();
+
+      var imgtag = document.getElementById("haohao");
+      imgtag.title = selectedFile.name;
+      reader.onload = function (event) {
+        imgtag.src = event.target.result;
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  </script>
+</div>

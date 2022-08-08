@@ -60,6 +60,6 @@ mongoose.connect('mongodb+srv://hao:123@cluster0.awb35tc.mongodb.net/Node?retryW
         console.log('connect to MongoDB failed', err)
     })
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+// start the server listening for requests
+app.listen(process.env.PORT || port, 
+	() => console.log("Server is running..."));

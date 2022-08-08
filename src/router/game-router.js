@@ -7,8 +7,8 @@ const gameRouter = express.Router();
 //[GET] /list-score
 gameRouter.get("/list-score", getScore)
 
-//[POST] /login/:username/:password
-gameRouter.post("/login/:username/:password", checkLoginGame)
+//[GET] /login/:username/:password
+gameRouter.get("/login/:username/:password", checkLoginGame)
 
 //[POST] /register/:username/:password
 gameRouter.post("/register/:username/:password", registerUser)

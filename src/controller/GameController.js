@@ -9,10 +9,12 @@ const checkLoginGame = async (req, res) => {
     if (data) {
         if (data.password === password) {
             res.json({ error : false });
-        } else {
-            res.json({ error : true });
-        }
+            return
     }
+    
+    res.json({ error : true });
+    
+}
 }
 
 

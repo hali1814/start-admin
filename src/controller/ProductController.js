@@ -71,7 +71,7 @@ const pageProductUpdatePost = async (req, res) => {
     const { body, file } = req;
     const { id } = req.params;
     if (file) {
-        let image = `/haohoa-asset/images/${file.filename}`;
+        let image = `https://haohoa.herokuapp.com/haohoa-asset/images/${file.filename}`;
         body.image = image;
     }
     const product = await updateProduct(id, body);

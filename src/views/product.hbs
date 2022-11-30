@@ -23,7 +23,7 @@
               <tbody>
                 {{#each products}}
                 <a class="a-haohoa" href="/product/details/{{this._id}}">
-                <tr onclick="haohoa({{@index}})">
+                <tr onclick="handleClick({{@index}})">
                   <td>{{foo @index}}</td>
                   <td><img src={{this.image}} /></td>
                   <td>{{this.name_product}}</td>
@@ -44,7 +44,7 @@
     </div>
   </div>
   <script>
-    function haohoa(index) {
+    function handleClick(index) {
       document.getElementsByClassName("a-haohoa")[index].click();
     }
   </script>

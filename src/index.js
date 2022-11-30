@@ -43,7 +43,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 //static 
 app.use(express.static(path.join(__dirname, 'public')))
-
+console.log(__dirname)
 //router
 connectAllRouter(app)
 
